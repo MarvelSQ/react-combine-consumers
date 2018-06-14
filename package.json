@@ -1,0 +1,48 @@
+{
+  "name": "react-combine-consumers",
+  "version": "0.0.1",
+  "description": "Combine multi Consumer as a HOC or a Component ",
+  "main": "index.js",
+  "scripts": {
+    "build": "babel src --out-dir lib",
+    "test": "jest --coverage"
+  },
+  "keywords": [
+    "react",
+    "context",
+    "combine"
+  ],
+  "peerDependencies": {
+    "react": "^16.3.0"
+  },
+  "author": "Qiang Sun <sun1993hlj@hotmail.com> (https://github.com/MarvelSQ)",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-eslint": "^8.2.3",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-babel": "^5.1.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.9.1",
+    "jest": "^23.1.0",
+    "react": "^16.4.1",
+    "react-test-renderer": "^16.4.1"
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarvelSQ/react-combine-consumers.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MarvelSQ/react-combine-consumers/issues"
+  },
+  "homepage": "https://github.com/MarvelSQ/react-combine-consumers#readme"
+}

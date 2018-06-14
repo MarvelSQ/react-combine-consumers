@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render 1`] = `
+<div
+  onChangeColor={[Function]}
+  onChangeHeight={[Function]}
+>
+  <div
+    style={
+      Object {
+        "color": "#ff00ff",
+        "height": "40px",
+      }
+    }
+  >
+    #ff00ff
+    ,
+    40px
+  </div>
+  <button
+    style={
+      Object {
+        "color": "#ff00ff",
+        "height": "40px",
+      }
+    }
+  >
+    40px
+    ,
+    #ff00ff
+  </button>
+</div>
+`;
+
+exports[`render 2`] = `
+<div
+  onChangeColor={[Function]}
+  onChangeHeight={[Function]}
+>
+  <div
+    style={
+      Object {
+        "color": "#2196f3",
+        "height": "40px",
+      }
+    }
+  >
+    #2196f3
+    ,
+    40px
+  </div>
+  <button
+    style={
+      Object {
+        "color": "#2196f3",
+        "height": "40px",
+      }
+    }
+  >
+    40px
+    ,
+    #2196f3
+  </button>
+</div>
+`;
+
+exports[`render 3`] = `
+<div
+  onChangeColor={[Function]}
+  onChangeHeight={[Function]}
+>
+  <div
+    style={
+      Object {
+        "color": "#2196f3",
+        "height": "30px",
+      }
+    }
+  >
+    #2196f3
+    ,
+    30px
+  </div>
+  <button
+    style={
+      Object {
+        "color": "#2196f3",
+        "height": "30px",
+      }
+    }
+  >
+    30px
+    ,
+    #2196f3
+  </button>
+</div>
+`;
