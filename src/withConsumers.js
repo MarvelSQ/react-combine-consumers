@@ -1,25 +1,28 @@
 const React = require('react');
 const { getConsumersAndKeys, getMappedValue } = require('./util');
 
-function combine([Consumer, ...consumers], keys, WrappedComponent, props, values) {
-  return (
-    <Consumer>
-      {(curValue) => {
-        if (consumers.length === 0) {
-          return <WrappedComponent {...getMappedValue([...values, curValue], keys)} {...props} />;
+const defaultMapValuesToProps = valuesObj => valuesObj;
+const EmptyObject = Object.create(null);
+
+function combine([FirstConsumer, ...originConsumers], keys, WrappedComponent, props, mapValueToProps) {
+  function reduceConsumers(consumers, values) {
+    const Consumer = consumers.shift();
+    return (curValue) => {
+      if (!Consumer) {
+        let extendProps = mapValueToProps(getMappedValue([...values, curValue], keys));
+        if (typeof extendProps !== 'object') {
+          if (process.env.NODE_ENV !== 'production') console.warn(`MapValueToProps contain '${keys}' return a non-Object`);
+          extendProps = EmptyObject;
         }
-        return combine(consumers, keys, WrappedComponent, props, [...values, curValue]);
-      }}
-    </Consumer>
-  );
+        return <WrappedComponent {...extendProps} {...props} />;
+      }
+      return <Consumer>{reduceConsumers(consumers, [...values, curValue])}</Consumer>;
+    };
+  }
+  return <FirstConsumer>{reduceConsumers(originConsumers, [])}</FirstConsumer>;
 }
 
-module.exports = (originConsumers) => {
+module.exports = (originConsumers, mapValuesToProps = defaultMapValuesToProps) => {
   const { keys, consumers } = getConsumersAndKeys(originConsumers);
-
-  return WrappedComponent => class WithConsumer extends React.Component {
-    render() {
-      return combine(consumers, keys, WrappedComponent, this.props, []);
-    }
-  };
+  return WrappedComponent => props => combine(consumers, keys, WrappedComponent, props, mapValuesToProps);
 };

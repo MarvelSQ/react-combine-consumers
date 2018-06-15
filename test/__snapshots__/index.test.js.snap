@@ -29,6 +29,16 @@ exports[`render 1`] = `
     ,
     #ff00ff
   </button>
+  <button
+    style={
+      Object {
+        "color": undefined,
+        "height": undefined,
+      }
+    }
+  >
+    ,
+  </button>
 </div>
 `;
 
@@ -61,6 +71,16 @@ exports[`render 2`] = `
     ,
     #2196f3
   </button>
+  <button
+    style={
+      Object {
+        "color": undefined,
+        "height": undefined,
+      }
+    }
+  >
+    ,
+  </button>
 </div>
 `;
 
@@ -92,6 +112,16 @@ exports[`render 3`] = `
     30px
     ,
     #2196f3
+  </button>
+  <button
+    style={
+      Object {
+        "color": undefined,
+        "height": undefined,
+      }
+    }
+  >
+    ,
   </button>
 </div>
 `;

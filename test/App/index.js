@@ -4,8 +4,9 @@ import ColorContext from './ColorContext';
 import { combineConsumers, withConsumers } from '../../';
 import Button from './Button';
 
-const MultiConsumer = combineConsumers({ color: ColorContext.Consumer, height: HeightContext.Consumer });
+const MultiConsumer = combineConsumers({ color: ColorContext.Consumer, height: HeightContext.Consumer }, ({ color, height }, next) => next(color, height));
 const EmhancedButton = withConsumers({ color: ColorContext.Consumer, height: HeightContext.Consumer })(Button);
+const FailedButton = withConsumers({ color: ColorContext.Consumer, height: HeightContext.Consumer }, () => 'test')(Button);
 
 class index extends Component {
   constructor(props) {
@@ -25,20 +26,25 @@ class index extends Component {
   }
 
   render() {
-    return <div
-      onChangeColor={this.changeColor}
-      onChangeHeight={this.changeHeight}>
-      <HeightContext.Provider value={this.state.height}>
-        <ColorContext.Provider value={this.state.color}>
-          <MultiConsumer>
-            {({ color, height }) => {
-              return <div style={{ color, height }}>{color},{height}</div>
-            }}
-          </MultiConsumer>
-          <EmhancedButton />
-        </ColorContext.Provider>
-      </HeightContext.Provider>
-    </div>;
+    return (
+      <div
+        onChangeColor={this.changeColor}
+        onChangeHeight={this.changeHeight}
+      >
+        <HeightContext.Provider value={this.state.height}>
+          <ColorContext.Provider value={this.state.color}>
+            <MultiConsumer>
+              {(color, height) => <div style={{ color, height }}>{color},{height}</div>}
+            </MultiConsumer>
+            <EmhancedButton />
+            <MultiConsumer>
+              {(color, height) => undefined}
+            </MultiConsumer>
+            <FailedButton />
+          </ColorContext.Provider>
+        </HeightContext.Provider>
+      </div>
+    );
   }
 }
 
