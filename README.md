@@ -89,7 +89,7 @@ import ColorContext from './Themecontext';
 import HeightContext from './Themecontext';
 import Button from './Button';
 
-const EnhancedButton = withConsumers({color:ColorContext.Consumer,height:HeightContext.Consumer},({color,height})=>({color:color.repace('f','0'),height}))(Button)
+const EnhancedButton = withConsumers({color:ColorContext.Consumer,height:HeightContext.Consumer},({color,height})=>({color:color.replace('f','0'),height}))(Button)
 
 export default ()=>{
   return <HeightContext.Provider value="19px">
