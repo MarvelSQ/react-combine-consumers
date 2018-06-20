@@ -22,7 +22,12 @@ function combine([FirstConsumer, ...originConsumers], keys, WrappedComponent, pr
   return <FirstConsumer>{reduceConsumers(originConsumers, [])}</FirstConsumer>;
 }
 
-module.exports = (originConsumers, mapValuesToProps = defaultMapValuesToProps) => {
+module.exports = (originConsumers, mapValuesToProps) => {
   const { keys, consumers } = getConsumersAndKeys(originConsumers);
+
+  if (typeof mapValuesToProps !== 'function') {
+    if (process.env.NODE_ENV !== 'production') console.warn(`mapValuesToProps in withConsumers[${keys}] should be function, but provided a ${typeof mapValuesToProps}`);
+    mapValuesToProps = defaultMapValuesToProps;
+  }
   return WrappedComponent => props => combine(consumers, keys, WrappedComponent, props, mapValuesToProps);
 };

@@ -21,8 +21,12 @@ function combine([FirstConsumer, ...originConsumers], keys, render, preRender) {
   return <FirstConsumer>{reduceConsumers(originConsumers, [])}</FirstConsumer>;
 }
 
-module.exports = (originConsumers, preRender = defaultPreRender) => {
+module.exports = (originConsumers, preRender) => {
   const { keys, consumers } = getConsumersAndKeys(originConsumers);
+  if (typeof preRender !== 'function') {
+    if (process.env.NODE_ENV !== 'production') console.warn(`preRender in combineConsumers[${keys}] should be function, but provided a ${typeof preRender}`);
+    preRender = defaultPreRender;
+  }
   return ({ children }) => {
     if (typeof children !== 'function') {
       throw Error('children need to be a function');
