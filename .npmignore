@@ -4,3 +4,7 @@ package-lock.json
 coverage
 test
 .eslintrc.js
+.eslintignore
+.travis.yml
+.babelrc
+src
