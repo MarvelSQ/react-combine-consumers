@@ -24,13 +24,17 @@ function combine([FirstConsumer, ...originConsumers], keys, render, preRender) {
 module.exports = (originConsumers, preRender) => {
   const { keys, consumers } = getConsumersAndKeys(originConsumers);
   if (typeof preRender !== 'function') {
-    if (process.env.NODE_ENV !== 'production') console.warn(`preRender in combineConsumers[${keys}] should be function, but provided a ${typeof preRender}`);
+    if (process.env.NODE_ENV !== 'production' && preRender) console.warn(`preRender in combineConsumers[${keys}] should be function, but provided a ${typeof preRender}`);
     preRender = defaultPreRender;
   }
-  return ({ children }) => {
+  const combineComponent = ({ children }) => {
     if (typeof children !== 'function') {
       throw Error('children need to be a function');
     }
     return combine(consumers, keys, children, preRender);
   };
+
+  combineComponent.displayName = `combine(${keys.join(',')})`;
+
+  return combineComponent;
 };
