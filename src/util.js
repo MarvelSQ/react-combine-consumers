@@ -1,6 +1,9 @@
 const CONTEXT_TYPE = require('./ContextType');
 
 module.exports = {
+  assign: objs => objs.reduce((f, e) => ({ ...f, ...e }), {}),
+  type: target => typeof target,
+  is: (target, type) => type === typeof target,
   getConsumersAndKeys: (consumers) => {
     const consumerKeys = Object.keys(consumers);
     const finalKeys = [];

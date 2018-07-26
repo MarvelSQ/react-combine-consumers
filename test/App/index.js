@@ -25,6 +25,11 @@ class index extends Component {
     this.setState({ height });
   }
 
+  componentDidCatch(error, errorinfo) {
+    console.log(error);
+    console.log(errorinfo);
+  }
+
   render() {
     return (
       <div
