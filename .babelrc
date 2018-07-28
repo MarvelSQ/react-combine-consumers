@@ -3,5 +3,15 @@
     "react",
     "env",
     "stage-0"
-  ]
+  ],
+  "env": {
+    "production": {
+      "presets": [
+        "minify"
+      ],
+      "plugins": [
+        "transform-inline-environment-variables"
+      ]
+    }
+  }
 }
