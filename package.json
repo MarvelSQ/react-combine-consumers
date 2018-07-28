@@ -1,12 +1,12 @@
 {
   "name": "react-combine-consumers",
-  "version": "0.1.7",
+  "version": "0.1.9",
   "description": "Combine multi Consumer as a HOC or a Component ",
   "main": "index.js",
   "scripts": {
     "product": "rm -rf prod && BABEL_ENV=production NODE_ENV=production babel src --out-dir prod",
     "build": "rm -rf lib && NODE_ENV=development babel src --out-dir lib",
-    "test": "NODE_ENV=development jest --coverage",
+    "test": "NODE_ENV=development jest --coverage && NODE_ENV=production jest --coverage",
     "prod-test": "NODE_ENV=production jest --coverage"
   },
   "keywords": [
