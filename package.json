@@ -1,6 +1,6 @@
 {
   "name": "react-combine-consumers",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Combine multi Consumer as a HOC or a Component ",
   "main": "index.js",
   "scripts": {
