@@ -1,1 +1,0 @@
-'use strict';module.exports='function'==typeof Symbol&&Symbol.for?Symbol.for('react.context'):60110;
