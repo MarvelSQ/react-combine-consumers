@@ -1,11 +1,13 @@
 {
   "name": "react-combine-consumers",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Combine multi Consumer as a HOC or a Component ",
   "main": "index.js",
   "scripts": {
-    "build": "rm -rf lib && babel src --out-dir lib",
-    "test": "jest --coverage"
+    "product": "rm -rf prod && BABEL_ENV=production NODE_ENV=production babel src --out-dir prod",
+    "build": "rm -rf lib && NODE_ENV=development babel src --out-dir lib",
+    "test": "NODE_ENV=development jest --coverage && NODE_ENV=production jest --coverage",
+    "prod-test": "NODE_ENV=production jest --coverage"
   },
   "keywords": [
     "react",
@@ -20,7 +22,9 @@
   "dependencies": {},
   "devDependencies": {
     "babel-eslint": "^8.2.3",
+    "babel-plugin-transform-inline-environment-variables": "^0.4.3",
     "babel-preset-env": "^1.7.0",
+    "babel-preset-minify": "^0.4.3",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "eslint": "^4.19.1",
