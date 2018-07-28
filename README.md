@@ -1,54 +1,35 @@
 # react-combine-consumers
 
-this is a lib for [React] new [Context] Api
+this is a *2KB* lib for [React] new [Context] Api
 
-there are **combineConsumers** and **withConsumers**
+there are Component:**combineConsumers** and HOC:**withConsumers**
 
-## v0.1.0
+## Install
 
-### preRender
+npm:
 
-combineConsumers support **preRender**
-
-there are two params
-
-- *valuesObj* multiple consumers Values Obj
-
-  - like ```{ height: HEIGHT_CONTEXT_VALUE,color: COLOR_CONTEXT_VALUE }```
-
-- *render* function inside multiConsumer
-
-  - like ```(params) => <Component {...params} />```
-
-***default***
-
-```js
-(valuesObj,render)=>{
-  return render(valuesObj);
-}
+```bash
+npm install --save-dev webpack
 ```
 
-### mapValuesToProps
+---
 
-withConsumers support **mapValuesToProps**
+## Get Started
 
-there are two params
+### **combineConsumers(** *Consumers* **)**
 
-- *valuesObj* multiple consumers Values Obj
-  - like ```{ height: HEIGHT_CONTEXT_VALUE,color: COLOR_CONTEXT_VALUE }```
+A multiple context.consumer combine to one component
 
-***default***
+#### Consumers
+
+ a object, value is the **Context.Consumer**, **context value** will marked as it's own key;
 
 ```js
-(valuesObj)=>{
-  // some opreation
-  return valuesObj;
+const Consumers = {
+  name: NameContext.Consumer,
+  style: StyleContext.Consumer,
 }
 ```
-
-## combineConsumers
-
-this can combine multiple consumers into one Component
 
 ### Usage
 
@@ -58,14 +39,14 @@ import { combineConsumers } from 'react-combine-consumers';
 import ColorContext from './Themecontext';
 import HeightContext from './Themecontext';
 
-const StyleConsumer = combineConsumers({color:ColorContext.Consumer,height:HeightContext.Consumer},({color,height},render)=>render(color,height))
+const StyleConsumer = combineConsumers({color:ColorContext.Consumer,height:HeightContext.Consumer})
 
 export default ()=>{
   return <HeightContext.Provider value="19px">
     <ColorContext.Provider value="#2196f3">
       <StyleConsumer>
         {
-          (color,height)=>
+          ({color,height})=>
             <button style={{color,height}}>
               this is a button
             </button>
@@ -76,9 +57,22 @@ export default ()=>{
 }
 ```
 
-## withConsumers
+---
+
+### **withConsumers(** *Consumers* **)**
 
 this can combine multiple consumers as a High-Order-Component
+
+#### Consumers
+
+ a object, value is the **Context.Consumer**, **context value** will marked as it's own key;
+
+```js
+const Consumers = {
+  name: NameContext.Consumer,
+  style: StyleContext.Consumer,
+}
+```
 
 ### Usage
 
@@ -89,7 +83,7 @@ import ColorContext from './Themecontext';
 import HeightContext from './Themecontext';
 import Button from './Button';
 
-const EnhancedButton = withConsumers({color:ColorContext.Consumer,height:HeightContext.Consumer},({color,height})=>({color:color.replace('f','0'),height}))(Button)
+const EnhancedButton = withConsumers({color:ColorContext.Consumer,height:HeightContext.Consumer})(Button)
 
 export default ()=>{
   return <HeightContext.Provider value="19px">
@@ -99,6 +93,17 @@ export default ()=>{
   </HeightContext.Provider>
 }
 ```
+
+## updates
+
+## v0.2.0
+
+main update: reduce module size
+
+|version|stat|parsed|gzip|
+|-------|----:|------:|----:|
+|0.1.2|7.14KB|6.95KB|1.49KB|
+|0.2.0|2.12KB|2.24KB|977B|
 
 [React]:https://reactjs.org
 [Context]:https://reactjs.org/docs/context.html
