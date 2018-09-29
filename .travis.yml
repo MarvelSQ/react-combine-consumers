@@ -9,11 +9,12 @@ jobs:
       script: echo "deploy package to npm ..."
       deploy:
         provider: npm
+        tag: beta
         email: "sun1993hlj@hotmail.com"
         api_key: $NODE_TOKEN
         skip_cleanup: true
         on:
-          branch: master
+          branch: dev
 cache:
   directories:
     - "node_modules"
