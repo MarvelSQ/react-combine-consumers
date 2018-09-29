@@ -9,7 +9,7 @@ there are Component:**combineConsumers** and HOC:**withConsumers**
 npm:
 
 ```bash
-npm install --save-dev webpack
+npm install --save-dev react-combine-consumers
 ```
 
 ---
@@ -19,6 +19,26 @@ npm install --save-dev webpack
 ### **combineConsumers(** *Consumers* **)**
 
 A multiple context.consumer combine to one component
+
+in React Developer Tool show as **combine(...)**
+
+```html
+<Context.Provider value="app">
+  <Context.Provider value={height:16}>
+    ...
+    <combine(name,style)>
+      <Context.Consumer>
+        <Context.Consumer>
+          <button style={height:16} >
+            <span>app</span>
+          </button>
+        <Context.Consumer>
+      </Context.Consumer>
+    </combine(name,style)>
+    ...
+  </Context.Provider>
+</Context.Provider>
+```
 
 #### Consumers
 
@@ -62,6 +82,26 @@ export default ()=>{
 ### **withConsumers(** *Consumers* **)**
 
 this can combine multiple consumers as a High-Order-Component
+
+in React Developer Tool show as **with(...)**
+
+```html
+<Context.Provider value="app">
+  <Context.Provider value={height:16}>
+    ...
+    <with(name,style)>
+      <combine(name,style)>
+        <Context.Consumer>
+          <Context.Consumer>
+            <SomeComponent name="app" style={height:16}/>
+          <Context.Consumer>
+        </Context.Consumer>
+      </combine(name,style)>
+    </with(name,style)>
+    ...
+  </Context.Provider>
+</Context.Provider>
+```
 
 #### Consumers
 

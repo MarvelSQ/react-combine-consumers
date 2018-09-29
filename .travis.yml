@@ -1,6 +1,19 @@
 language: node_js
 node_js:
-  - "8"
+  - "10"
+jobs:
+  includes:
+    - stage: test
+      script: npm run test
+    - stage: npm release
+      script: echo "deploy package to npm ..."
+      deploy:
+        provider: npm
+        email: "sun1993hlj@hotmail.com"
+        api_key: $NODE_TOKEN
+        skip_cleanup: true
+        on:
+          branch: master
 cache:
   directories:
     - "node_modules"
